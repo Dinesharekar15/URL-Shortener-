@@ -13,24 +13,39 @@ async function generatenewurl(req, res) {
         redirecturl: body.url,
         visithistory: []
     })
-    return res.json({ id: newShortId })
+    return res.render("home",{ id: newShortId})
+    // return res.json({ id: newShortId });
+    
 }
 async function funredirecturl(req, res) {
     const shorturlid = req.params.shorturlid;
-    const entry = await URL.findOneAndUpdate({
-        shorturlid
-    }, {
-        $push: {
-            visithistory: {
-                timestamp: Date.now()
+    
+    try {
+        const entry = await URL.findOneAndUpdate(
+            { shorturlid },
+            {
+                $push: {
+                    visithistory: {
+                        timestamp: Date.now()
+                    }
+                }
             }
-        }
-    })
+        );
 
-    res.redirect(entry.redirecturl)
+        if (entry && entry.redirecturl) {
+            return res.redirect(entry.redirecturl);
+        } else {
+            return res.status(404).json({ error: "Short URL not found" });
+        }
+    } catch (error) {
+        // Handle other errors, e.g., database connection issues
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
 }
 
-async function analitics(res, req) {
+
+async function analitics(req, res) {
     const shorturlid = req.params.shorturlid;
     const result = await URL.findOne({ shorturlid })
     return res.json({
@@ -39,10 +54,18 @@ async function analitics(res, req) {
     })
 }
 
+async function geturl(req,res){
+    const allurl=await URL.find({});
+    return res.render("home",{
+        urls:allurl,
+    })
+}
+
 
 
 module.exports = {
     generatenewurl,
     funredirecturl,
-    analitics
+    analitics,
+    geturl
 }
