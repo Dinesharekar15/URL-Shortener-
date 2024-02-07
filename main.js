@@ -4,7 +4,7 @@ const { connect } = require('./connect');
 const path = require("path");  // Import the 'path' module
 
 const app = express();
-const PORT = 7001;
+const PORT = 7000;
 app.set("view engine","ejs")
 app.set("views", path.resolve("./views"))
 

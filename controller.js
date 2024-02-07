@@ -56,7 +56,7 @@ async function analitics(req, res) {
 
 async function geturl(req,res){
     const allurl=await URL.find({});
-    return res.render("home",{
+    return res.render('home',{
         urls:allurl,
     })
 }
