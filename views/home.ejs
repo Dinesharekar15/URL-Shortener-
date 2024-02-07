@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortner</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        li {
+            list-style: none;
+            text-align: center;
+        }
+
+        .contain {
+            text-align: center;
+
+            height: 100vh;
+        }
+
+        .shortid {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>URL Shortener</h1>
+    <div class="shortid">
+        <% if (locals.id) { %>
+
+            <p>
+            <h3>Generated Id:</h3>http://localhost:7001/<%= id %>
+                </p>
+                <% } %>
+    </div>
+    <div class="contain">
+        <form method="POST" action="/url">
+            <label for="">
+                <h2>Enter your original URL</h2>
+            </label>
+            <div class="url">
+                <input type="text" name="url" placeholder="https://example.com">
+                <button type="submit">Generate</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="table">
+        <h2>URL's</h2>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>sr.no</th>
+                    <th>short url</th>
+                    <th>redirerct</th>
+                    <th>clicks</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% urls.forEach((url, index)=> { %>
+                    <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <% url.shorturlid %>
+                        </td>
+                        <td>
+                            <% url.redirecturl %>
+                        </td>
+                        <td>
+                            <%= url.visithistory.clicks %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                        </tr>
+                </tbody>
+            </table>
+            <% } %>
+
+    </div>
+</body>
+
+</html>
+
+
+</html>
