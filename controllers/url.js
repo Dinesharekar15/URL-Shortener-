@@ -1,5 +1,5 @@
 const shortid = require('shortid')
-const URL = require('./model')
+const URL = require('../models/url')
 
 async function generatenewurl(req, res) {
     const body = req.body;
@@ -54,12 +54,7 @@ async function analitics(req, res) {
     })
 }
 
-async function geturl(req,res){
-    const allurl=await URL.find({});
-    return res.render('home',{
-        urls:allurl,
-    })
-}
+
 
 
 
@@ -67,5 +62,5 @@ module.exports = {
     generatenewurl,
     funredirecturl,
     analitics,
-    geturl
+    
 }

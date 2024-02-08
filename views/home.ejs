@@ -8,11 +8,26 @@
 
     <style>
         body {
+            color: #fff;
             background: #263849;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+            /* Adjust the spacing as needed */
+        }
+
+        th,
+        td {
+            padding: 10px;
+            /* Adjust the padding as needed */
+            border: 1px solid #ddd;
+            /* Border for better visibility */
         }
 
         h1 {
@@ -23,7 +38,8 @@
             line-height: 54px;
             margin-bottom: 16px;
         }
-        .contain{
+
+        .contain {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -40,7 +56,7 @@
             margin-bottom: 0;
             padding-bottom: 11px;
             padding-top: 11px;
-            
+
         }
 
         button {
@@ -79,10 +95,10 @@
         <div class="contain">
             <form method="POST" action="/url">
 
-                
-                    <input type="text" name="url" placeholder="Enter yor link here">
-                    <button type="submit">Shorten url</button>
-                
+
+                <input type="text" name="url" placeholder="Enter yor link here">
+                <button type="submit">Shorten url</button>
+
 
             </form>
         </div>
