@@ -13,8 +13,12 @@ async function generatenewurl(req, res) {
         redirecturl: body.url,
         visithistory: []
     })
-    return res.render("home",{ id: newShortId})
+
+    
+    const allurl=await URL.find({});
+     
     // return res.json({ id: newShortId });
+    return res.render("home",{ id: newShortId, urls:allurl})
     
 }
 async function funredirecturl(req, res) {
@@ -31,9 +35,13 @@ async function funredirecturl(req, res) {
                 }
             }
         );
+        
+
 
         if (entry && entry.redirecturl) {
+            console.log(entry.redirecturl);
             return res.redirect(entry.redirecturl);
+
         } else {
             return res.status(404).json({ error: "Short URL not found" });
         }
