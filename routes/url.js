@@ -1,5 +1,5 @@
 const express=require('express');
-const {generatenewurl,funredirecturl,analitics}=require('../controllers/url')
+const {generatenewurl,funredirecturl,analitics}=require('../controllers/url.js')
 
 const router = express.Router();
 

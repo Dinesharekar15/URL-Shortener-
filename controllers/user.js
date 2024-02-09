@@ -9,7 +9,7 @@ async function usersignup(req,res){
         password:password
     })
      
-    return res.render("home")
+    return res.redirect("/")
      
 }
 
