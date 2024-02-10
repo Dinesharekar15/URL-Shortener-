@@ -15,10 +15,10 @@ async function generatenewurl(req, res) {
     })
 
     
-    const allurl=await URL.find({});
+    
      
     // return res.json({ id: newShortId });
-    return res.render("home",{ id: newShortId, urls:allurl})
+    return res.render("home",{ id: newShortId})
     
 }
 async function funredirecturl(req, res) {
@@ -39,11 +39,12 @@ async function funredirecturl(req, res) {
 
 
         if (entry && entry.redirecturl) {
-            console.log(entry.redirecturl);
+            
             return res.redirect(entry.redirecturl);
 
         } else {
-            return res.status(404).json({ error: "Short URL not found" });
+            
+            return res.status(404).json({ error: "Short URL cant found" });
         }
     } catch (error) {
         // Handle other errors, e.g., database connection issues
