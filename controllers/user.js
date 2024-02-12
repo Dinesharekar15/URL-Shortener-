@@ -19,10 +19,10 @@ async function userlogin(req, res) {
     const user = await User.findOne({ email, password })
     if (!user) return res.render("login", { error: "Invalid email or password" })
 
-    const sessionId = uuidv4();
-    res.cookie("uid",sessionId)
+   
     
-    setuser(sessionId, user)
+    const token=setuser(user)
+    res.cookie("uid",token)
     return res.redirect("/")
 }
 
