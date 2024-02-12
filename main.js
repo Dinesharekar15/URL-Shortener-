@@ -1,12 +1,12 @@
 const express = require("express");
-const {restrictuserlogin}=require('./middelware/auth')
+const {restrictuserlogin,cheakauth}=require('./middelware/auth')
 const { connect } = require('./connect');
 const path = require("path");  // Import the 'path' module
 const cookieParser = require('cookie-parser');
 
-const urlroute = require('./routes/url');
+const urlRoute = require('./routes/url');
 const userRoute = require('./routes/user');
-const staticurl = require('./routes/staticurl');
+const staticRoute = require('./routes/staticurl');
 
 const app = express();
 const PORT = 7000;
@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Use the routes
-app.use('/', staticurl);
+app.use('/url', restrictuserlogin,urlRoute);
 app.use('/user', userRoute);
-app.use('/', restrictuserlogin,urlroute);
+app.use('/',cheakauth, staticRoute);
 
 // Start the serve
 app.listen(PORT, () => {

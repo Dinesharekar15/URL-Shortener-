@@ -21,6 +21,7 @@ async function userlogin(req, res) {
 
     const sessionId = uuidv4();
     res.cookie("uid",sessionId)
+    
     setuser(sessionId, user)
     return res.redirect("/")
 }

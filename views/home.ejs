@@ -106,7 +106,7 @@
         <h1> Free URL Shortener</h1>
         
         <div class="contain">
-            <form method="POST" action="/">
+            <form method="POST" action="/url">
 
 
                 <input type="text" name="url" placeholder="Enter yor link here">
@@ -119,7 +119,7 @@
             <% if (locals.id) { %>
 
                 <p>
-                <h3>Generated Id:</h3>http://localhost:7000/<%= id %>
+                <h3>Generated Id:</h3>http://localhost:7000/url/<%= id %>
                     </p>
                     <% } %>
         </div>
