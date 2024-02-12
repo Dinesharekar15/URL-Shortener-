@@ -1,7 +1,8 @@
 const express = require("express");
-
+const {restrictuserlogin}=require('./middelware/auth')
 const { connect } = require('./connect');
 const path = require("path");  // Import the 'path' module
+const cookieParser = require('cookie-parser');
 
 const urlroute = require('./routes/url');
 const userRoute = require('./routes/user');
@@ -17,13 +18,14 @@ app.set("views", path.resolve("./views"))
 connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Use the routes
 app.use('/', staticurl);
 app.use('/user', userRoute);
-app.use('/', urlroute);
+app.use('/', restrictuserlogin,urlroute);
 
-// Start the server
+// Start the serve
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 })
